@@ -1,0 +1,68 @@
+---
+  title: "R package CA-eSAIR:  cellular automata extended state-space SAIR epidemiological models"
+  author: "[Song Lab](http://www.umich.edu/~songlab/)"
+  date: "`r Sys.Date()`"
+  output: github_document
+---
+
+## Purpose
+
+As the COVID-19 pandemic continues worsening in the US, it is of critical importance todevelop a health information system that provides timely risk evaluation and prediction of theCOVID-19  infection  in  communities.   We  propose  a  spatiotemporal  epidemiological  forecastmodel that combines a spatial cellular automata (CA) with a temporal extended Susceptible-Antibody-Infectious-Removed  (eSAIR)  model  under  time-varying  state-specific  control  mea-sures.  This new toolbox enables the projection of the county-level COVID-19 prevalence over3,109 counties in the continental US, includingt-day ahead risk forecast and the risk relatedto a travel route.  In comparison to the existing temporal risk prediction models, the proposedCA-eSAIR model informs the projected county-level risk to governments and residents of thelocal coronavirus spread patterns and the associated personal risks at specific geolocations.  Suchhigh-resolution risk projection is useful for decision-making on business reopening and resourceallocation for COVID-19 tests.
+
+## Preparation
+
+[Download packages directly](https://github.com/leyaozh/CA-eSAIR/archive/master.zip)
+
+To install and use this R package from Github, you will need to first install the R package `devtools`. Please uncomment the codes to install them. `eSIR` depends on three other packages, `rjags` (an interface to the JAGS library), `chron` and `gtools`, which could be installed with `CA-eSAIR` if not yet. 
+
+An error may occur if you have not yet installed JAGS-4.x.y.exe (for any x >= 0, y >=0). **Windows** users may download and install JAGS from [here](http://www.sourceforge.net/projects/mcmc-jags/files). **Mac** users may follow steps  at [casallas/8411082](https://gist.github.com/casallas/8411082).
+
+``` r
+# install.packages("devtools")
+# library(devtools)
+# install_github("leyaozh/CA-eSAIR")
+library(CA-eSAIR) 
+```
+
+Our data are collected daily from [dxy.com](https://mama.dxy.com/outbreak/daily-of-nationwide-new?index=20200206&locationIds=999&from=todh5). Alternatively, we notice some convenient access to COVID-19 data from [GuangchuangYu/nCov2019](https://github.com/GuangchuangYu/nCov2019). 
+
+For data outside China, we use [JHU CSSE GitHub](https://github.com/CSSEGISandData/COVID-19) data. Another package [coronavirus](https://github.com/RamiKrispin/coronavirus) has its GitHub version udpated daily, which is also quite useful. 
+
+We also pre-calculate some parameters in 
+
+```{r}
+```
+
+
+```{r load data, eval = FALSE}
+data("confirmed") # From JHU CSSE
+data("death") # From JHU CSSE
+data("recovered") # partly from 1Point3Acres
+data("USA_state_N") #population in each state
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GitHub Documents
+
+This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
+
+## Including Code
+
+You can include R code in the document as follows:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
